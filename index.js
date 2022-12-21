@@ -5,9 +5,12 @@ const {connection} = require('./config/db')
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const cors = require('cors');
-const {todoRoute} = require('./routes/todo.route')
-const {UserModel} = require('./models/User.model')
-const {authentication} = require('./middlewares/authentication')
+const {todoRoute} = require('./routes/todo.route');
+const {UserModel} = require('./models/User.model');
+const {userRoute} = require('./routes/user.route');
+const {allpostRoute} = require('./routes/allpost.route');
+
+const {authentication} = require('./middlewares/authentication');
 app.use(express.json());
 
 
@@ -68,6 +71,10 @@ app.post("/login", async (req, res)=>{
 
 app.use(authentication)
 app.use("/todos", todoRoute)
+app.use("/mypost", allpostRoute)
+app.use("/user", userRoute)
+
+//userRoute
 
 app.listen(process.env.port, async()=> {
 
