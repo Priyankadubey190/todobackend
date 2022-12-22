@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 })
 
 app.post("/signup", async (req, res) => {
-  const {email, password} = req.body;
+  const {name,image,gender,dob,number,email, password} = req.body;
   const userPre = await UserModel.findOne({email})
 
   if(userPre?.email){
@@ -28,7 +28,7 @@ app.post("/signup", async (req, res) => {
   else{
     try{
 bcrypt.hash(password,4, async function(err,hash){
-    const user = new UserModel({email,password:hash})
+    const user = new UserModel({name,image,gender,dob,number,email,password:hash})
     await user.save()
     res.send({"message": "signup successfully"})
 })

@@ -6,7 +6,8 @@ allpostRoute.get("/", async (req, res)=>{
     try{
         let qur = req.query;
     
-        const data = await AllpostModel.find(qur).populate({path: "user_id", select:["name","email"]}).lean().exec();
+        const data = await AllpostModel.find(qur).populate({path: "user_id", select:["name","email"]});
+        console.log("data",data)
         res.send(data);
     }
     catch(err){
@@ -18,8 +19,8 @@ allpostRoute.get("/", async (req, res)=>{
 allpostRoute.post("/post", async (req, res)=>{
     const payload = req.body
     try{
-        const new_data = new AllpostModel.insertMany([payload])
-        res.send ({"message": "data has saved"}+"\n"+new_data)
+        const new_data = await AllpostModel.insertMany(payload)
+        res.send ({"message": "data has saved"})
     }
     catch(err){
         console.log("err",err)

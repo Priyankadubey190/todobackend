@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 const allpostSchema = mongoose.Schema({
-    mypost: {type: String, required: true},
+    url: {type: String},
+    caption: {type: String},
+    likecount: {type: Number, min:0,max:999,default:0},
     user_id: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
