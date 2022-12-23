@@ -13,6 +13,11 @@ const {allpostRoute} = require('./routes/allpost.route');
 const {authentication} = require('./middlewares/authentication');
 app.use(express.json());
 
+app.use(cors(
+    {
+    origin : "*"
+}
+))
 
 app.get("/", (req, res) => {
     res.send("welcome")
