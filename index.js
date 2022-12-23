@@ -14,9 +14,9 @@ const {authentication} = require('./middlewares/authentication');
 app.use(express.json());
 
 app.use(cors(
-    {
-    origin : "*"
-}
+//     {
+//     origin : "*"
+// }
 ))
 
 app.get("/", (req, res) => {
