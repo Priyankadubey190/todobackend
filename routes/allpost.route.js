@@ -6,7 +6,7 @@ allpostRoute.get("/", async (req, res)=>{
     try{
         let qur = req.query;
     
-        const data = await AllpostModel.find(qur).populate({path: "user_id", select:["name","email"]});
+        const data = await AllpostModel.find(qur).populate({path: "user_id", select:["name","email","image"]});
         console.log("data",data)
         res.send(data);
     }
